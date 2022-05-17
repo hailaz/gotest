@@ -12,12 +12,14 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '1.14'
-      - name: Run coverage
+      - name: Run sub coverage
         run: | 
           cd sub
           go test -race -coverprofile=coverage.out -covermode=atomic
           sed -n '2,$p' coverage.out >> ../coverage.out
-      - name: Run coverage
+      - name: Run add coverage
+        run: go test -race -coverprofile=coverage.out -covermode=atomic
+      - name: Run gotest coverage
         run: go test -race -coverprofile=coverage.out -covermode=atomic
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
