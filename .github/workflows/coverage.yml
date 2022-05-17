@@ -16,10 +16,13 @@ jobs:
         run: |
           cd sub
           go test -race -coverprofile=coverage.out -covermode=atomic
-          sed -n '2,$p' coverage.out >> ../coverage.out
       - name: Run add coverage
         run: |
           cd add
+          go test -race -coverprofile=coverage.out -covermode=atomic
+      - name: Run cmd/sub coverage
+        run: |
+          cd cmd/sub
           go test -race -coverprofile=coverage.out -covermode=atomic
       - name: Run gotest coverage
         run: go test -race -coverprofile=coverage.out -covermode=atomic
