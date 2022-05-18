@@ -5,7 +5,7 @@ for file in `find . -name go.mod`; do
     echo start:$file
     dirpath=$(dirname $file)
     echo $dirpath
-    cd $basepath
+    # cd $basepath
     cd $dirpath
 
     go test ./... -race -coverprofile=coverage.out -covermode=atomic
@@ -21,4 +21,5 @@ for file in `find . -name go.mod`; do
     
     echo end
     echo
+    cd -
 done

@@ -14,15 +14,14 @@ jobs:
           go-version: '1.14'
       - name: Run coverage
         run: |
-          basepath=$(cd $(dirname $0) && pwd )
           for file in `find . -name go.mod`; do
               dirpath=$(dirname $file)
-              cd $basepath
               cd $dirpath
               go test -race -coverprofile=coverage.out -covermode=atomic ./...
               if grep -q "/gotest/.*/v2" go.mod; then
                   sed -i "s/gotest\(\/.*\)\/v2/gotest\/v2\1/g" coverage.out
               fi
+              cd -
           done
       # - name: Run gotest coverage
       #   run: go test -race -coverprofile=coverage.out -covermode=atomic ./...
