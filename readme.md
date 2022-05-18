@@ -23,8 +23,8 @@ go test ./... -race -coverprofile=coverage.out -covermode=atomic
 cd add
 go test ./... -race -coverprofile=coverage.out -covermode=atomic
 ## 如果子项目也是v2的话，需要转换一下报告文件内的路径
-## /add/v2 => /v2/add ,不同的子项目根据实际路径调整
-sed -i "s/\/add\/v2/\/v2\/add/g" coverage.out
+## /add/v2 => /v2/add 
+sed -i "s/gotest\(\/.*\)\/v2/gotest\/v2\1/g" coverage.out
 
 ```
 
@@ -57,5 +57,7 @@ go tool cover -func coverage.out
 https://github.com/go-kratos/kratos
 
 
-sed -i "s/\/add\/v2/\/v2\/add/g" coverage.out
+sed -i "s/\(\/add\)\/v2/\/v2\/add/g" coverage.out
+sed -i "s/gotest\(\/.*\)\/v2/gotest\/v2\1/g" coverage.out
+
 sed -i "s/atomic/6666/g" coverage.out
