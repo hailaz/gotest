@@ -38,8 +38,8 @@ github.com/hailaz/gotest/add/v2/sub.go:16.28,18.2 1 0
 # 转换后
 mode: atomic
 github.com/hailaz/gotest/v2/add/sub.go:3.24,5.2 1 1
-github.com/hailaz/gotest/v2/add/v2/sub.go:7.29,9.2 1 1
-github.com/hailaz/gotest/v2/add/v2/sub.go:16.28,18.2 1 0
+github.com/hailaz/gotest/v2/add/sub.go:7.29,9.2 1 1
+github.com/hailaz/gotest/v2/add/sub.go:16.28,18.2 1 0
 
 ```
 
