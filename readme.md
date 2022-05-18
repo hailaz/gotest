@@ -14,9 +14,15 @@ gotest
 └─sub // module github.com/hailaz/gotest/sub
 ```
 
+go test -race -coverprofile=coverage.out -covermode=atomic
+sed -n '2,$p' coverage.out >> ../coverage.out
 
 go test --count=1 -coverprofile=coverage.out ./...
-go test -race -coverprofile=coverage.out -covermode=atomic ./...
+go test ./... -race -coverprofile=coverage.out -covermode=atomic -coverpkg="./..."
 go tool cover -func coverage.out
 
+https://github.com/go-kratos/kratos
 
+
+sed -i "s/\/add\/v2/\/v2\/add/g" coverage.out
+sed -i "s/atomic/6666/g" coverage.out
