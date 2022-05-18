@@ -13,3 +13,10 @@ gotest
 │  └─sub
 └─sub // module github.com/hailaz/gotest/sub
 ```
+
+
+go test --count=1 -coverprofile=coverage.out ./...
+go test -race -coverprofile=coverage.out -covermode=atomic ./...
+go tool cover -func coverage.out
+
+
