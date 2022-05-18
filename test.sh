@@ -8,7 +8,7 @@ for file in `find . -name go.mod`; do
     cd $basepath
     cd $dirpath
 
-    go test -v ./... -race -coverprofile=coverage.out -covermode=atomic
+    go test ./... -race -coverprofile=coverage.out -covermode=atomic
     # if [ "." = $dirpath ]; then
     #     echo 跳过
     #     continue 1
