@@ -1,6 +1,17 @@
 name: Test and coverage
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+    - fix/**
+  pull_request:
+    branches:
+    - main
+
+# 
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
