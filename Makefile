@@ -21,13 +21,13 @@ gftidy:
 	for file in ${files}; do \
 		goModPath=$$(dirname $$file); \
 		echo "Processing dir: $$goModPath"; \
-		if [[ "$$goModPath" == "." ]]; then \
+		if [[ $$goModPath =~ ".git" || $$goModPath == "." ]] ; then \
 			echo "Skip path"; \
-		elif [[ $$goModPath == ./example* || $$goModPath == ./cmd* ]]; then \
+		elif [[ $$goModPath =~ "./cmd/gf" || $$goModPath =~ "./example" ]] ; then \
 			echo "Skip path"; \
 		else \
 			cd $$goModPath; \
-			go get -u -v github.com/hailaz/gotest/v2; \
+			go get -u -v github.com/gogf/gf/v2; \
 			go mod tidy; \
 			cd -; \
 		fi \
