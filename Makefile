@@ -21,9 +21,9 @@ gftidy:
 	for file in ${files}; do \
 		goModPath=$$(dirname $$file); \
 		echo "Processing dir: $$goModPath"; \
-		if [[ "$$goModPath" == "." ]] ; then \
+		if [[ "$$goModPath" == "." ]]; then \
 			echo "Skip path"; \
-		elif [[ "$$goModPath" =~ "./cmd" || "$$goModPath" =~ "./example" ]] ; then \
+		elif [[ $$goModPath == ./example* || $$goModPath == ./cmd* ]]; then \
 			echo "Skip path"; \
 		else \
 			cd $$goModPath; \
