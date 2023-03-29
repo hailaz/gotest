@@ -22,12 +22,12 @@ gftidy:
 		goModPath=$$(dirname $$file); \
 		echo "Processing dir: $$goModPath"; \
 		if [[ $$goModPath =~ ".git" || $$goModPath == "." ]] ; then \
-			echo "Skip path"; \
+			echo "Skip path$GITHUB_REF_NAME"; \
 		elif [[ $$goModPath =~ "./cmd/gf" || $$goModPath =~ "./example" ]] ; then \
 			echo "Skip path"; \
 		else \
 			cd $$goModPath; \
-			go get -u -v github.com/gogf/gf/v2; \
+			go get -u -v github.com/hailaz/gotest/v2; \
 			go mod tidy; \
 			cd -; \
 		fi \
