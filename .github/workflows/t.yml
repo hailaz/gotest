@@ -18,4 +18,4 @@ jobs:
       - name: run
         run: pwd
       - name: make
-        run: sudo make gftidy
+        run: make tidy
