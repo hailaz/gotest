@@ -23,6 +23,8 @@ gftidy:
 		echo "Processing dir: $$goModPath"; \
 		if [[ "$$goModPath" == "." ]] ; then \
 			echo "Skip path"; \
+		elif [[ "$$goModPath" =~ "./cmd" || "$$goModPath" =~ "./example" ]] ; then \
+			echo "Skip path"; \
 		else \
 			cd $$goModPath; \
 			go get -u -v github.com/hailaz/gotest/v2; \
