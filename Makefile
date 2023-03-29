@@ -23,6 +23,7 @@ gftidy:
 	else \
 		latestTag="@latest"; \
 	fi; \
+	echo "$$latestTag"; \
 	for file in ${files}; do \
 		goModPath=$$(dirname $$file); \
 		echo ""; \
