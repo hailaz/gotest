@@ -1,0 +1,21 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Auto Creating Tags
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Github Code
+        uses: actions/checkout@v3
+      - name: run
+        run: whoami
+      - name: run
+        run: ls -l
+      - name: run
+        run: pwd
+      - name: make
+        run: make gftidy
