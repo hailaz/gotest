@@ -18,16 +18,21 @@ lint:
 gftidy:
 	$(eval files=$(shell find . -name go.mod))
 	@set -e; \
+	if [[ $$GITHUB_REF_NAME =~ "v" ]] ; then \
+		latestTag="@$$GITHUB_REF_NAME"; \
+	else \
+		latestTag="@latest"; \
+	fi ; \
 	for file in ${files}; do \
 		goModPath=$$(dirname $$file); \
 		echo "Processing dir: $$goModPath"; \
-		if [[ $$goModPath =~ ".git" || $$goModPath == "." ]] ; then \
+		if [[ $$goModPath =~ ".git" || $$goModPath == "." ]]; then \
 			echo "Skip path"; \
-		elif [[ $$goModPath =~ "./cmd/gf" || $$goModPath =~ "./example" ]] ; then \
+		elif [[ $$goModPath =~ "./cmd/gf" || $$goModPath =~ "./example" ]]; then \
 			echo "Skip path"; \
 		else \
 			cd $$goModPath; \
-			go get github.com/hailaz/gotest/v2@$$GITHUB_REF_NAME; \
+			go get github.com/hailaz/gotest/v2$$latestTag; \
 			go mod tidy; \
 			cd -; \
 		fi \
