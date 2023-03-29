@@ -18,4 +18,4 @@ jobs:
       - name: run
         run: pwd
       - name: make
-        run: make tidy
+        run: make gftidy
