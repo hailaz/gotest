@@ -1,6 +1,9 @@
 package callhello
 
-import "github.com/hailaz/gotest/v2"
+import (
+	"github.com/hailaz/gotest/contrib/hello/v2"
+	"github.com/hailaz/gotest/v2"
+)
 
 // MyName description
 //

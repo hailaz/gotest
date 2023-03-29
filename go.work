@@ -1,6 +1,8 @@
 go 1.18
 
 use (
+	./contrib/callhello
+	./contrib/hello
 	./contrib/submod
 	./sub
 )
