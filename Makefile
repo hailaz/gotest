@@ -19,18 +19,19 @@ gftidy:
 	$(eval files=$(shell find . -name go.mod))
 	@set -e; \
 	if [[ $$GITHUB_REF_NAME =~ "v" ]]; then \
-		latestTag="@$$GITHUB_REF_NAME"; \
+		goGetCMD="go get -v github.com/hailaz/gotest/v2@$$GITHUB_REF_NAME"; \
 	else \
-		latestTag="@latest"; \
+		goGetCMD="go get -u -v github.com/hailaz/gotest/v2"; \
 	fi; \
-	echo "$$latestTag"; \
+	echo "$$goGetCMD"; \
 	for file in ${files}; do \
 		goModPath=$$(dirname $$file); \
 		if [[ $$goModPath =~ "./contrib" ]]; then \
 			echo ""; \
 			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
-			go get github.com/hailaz/gotest/v2$$latestTag; \
+			go get -u -v github.com/hailaz/gotest/contrib/...; \
+			$$goGetCMD; \
 			go mod tidy; \
 			cd -; \
 		fi; \
