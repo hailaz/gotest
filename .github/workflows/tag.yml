@@ -17,24 +17,16 @@ jobs:
     steps:
       - name: Checkout Github Code
         uses: actions/checkout@v3
-      - name: Auto Creating Tags
+      - name: update dependencies
         run: make gftidy
-      # - name: Auto Creating Tags
-      #   run: |
-      #     echo "package gotest" > version.go
-      #     echo "" >> version.go
-      #     echo "const (" >> version.go
-      #     echo -e "\t// VERSION is the current GoFrame version." >> version.go
-      #     echo -e "\tVERSION = \"$GITHUB_REF_NAME\"" >> version.go
-      #     echo ")" >> version.go
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Auto Creating Tags
         run: |
-          # git config --global user.email "tagrobot@goframe.org"
-          # git config --global user.name  "TagRobot"
+          git config --global user.email "tagrobot@goframe.org"
+          git config --global user.name  "TagRobot"
           for file in `find contrib -name go.mod`; do
               tag=$(dirname $file)/$GITHUB_REF_NAME
               git tag $tag

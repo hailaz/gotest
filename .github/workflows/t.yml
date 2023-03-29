@@ -17,5 +17,5 @@ jobs:
         run: ls -l
       - name: run
         run: pwd
-      - name: make
-        run: make gftidy
+      # - name: make
+      #   run: make gftidy
