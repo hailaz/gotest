@@ -22,7 +22,7 @@ gftidy:
 		goModPath=$$(dirname $$file); \
 		echo "Processing dir: $$goModPath"; \
 		if [[ $$goModPath =~ ".git" || $$goModPath == "." ]] ; then \
-			echo "Skip path$GITHUB_REF_NAME"; \
+			echo "Skip path$$GITHUB_REF_NAME"; \
 		elif [[ $$goModPath =~ "./cmd/gf" || $$goModPath =~ "./example" ]] ; then \
 			echo "Skip path"; \
 		else \
