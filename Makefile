@@ -26,12 +26,9 @@ gftidy:
 	echo "$$latestTag"; \
 	for file in ${files}; do \
 		goModPath=$$(dirname $$file); \
-		echo ""; \
-		echo "processing dir: $$goModPath"; \
-		if [[ $$goModPath == "." || $$goModPath =~ "./cmd" || $$goModPath =~ "./example" ]]; then \
-			echo "skip path"; \
-		else \
-			echo "update dependencies"; \
+		if [[ $$goModPath =~ "./contrib" ]]; then \
+			echo ""; \
+			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
 			go get github.com/hailaz/gotest/v2$$latestTag; \
 			go mod tidy; \
