@@ -23,6 +23,9 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_name: TagRobot
+          author_email: tagrobot@goframe.org
+          message: 'update gf to $GITHUB_REF_NAME'
       - name: Auto Creating Tags
         run: |
           git config --global user.email "tagrobot@goframe.org"
