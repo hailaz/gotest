@@ -20,7 +20,7 @@ func Add() {
 //
 // author: hailaz
 func MyName() string {
-	return "hello"
+	return "hello-v2.0.20"
 }
 
 // Version description
