@@ -1,0 +1,16 @@
+name: build
+
+on:
+  workflow_run:
+    workflows: [AutoCreating SubMod Tags]
+    types:
+      - completed
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The triggering workflow passed'
+  on-failure:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The triggering workflow failed'
