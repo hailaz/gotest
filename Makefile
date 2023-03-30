@@ -30,6 +30,7 @@ gftidy:
 			echo ""; \
 			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
+			go mod tidy; \
 			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@latest{{end}}" -m all | grep contrib | xargs -L1 go get -v ; \
 			$$goGetCMD; \
 			go mod tidy; \
