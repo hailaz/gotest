@@ -1,7 +1,6 @@
 package callhello
 
 import (
-	"github.com/gogf/gf/v2/frame/g"
 	"github.com/hailaz/gotest/contrib/hello/v2"
 	"github.com/hailaz/gotest/v2"
 )
@@ -31,13 +30,4 @@ func Call() string {
 // author: hailaz
 func Version() string {
 	return gotest.Version()
-}
-
-// Dump description
-//
-// createTime: 2023-03-30 10:24:46
-//
-// author: hailaz
-func Dump() {
-	g.Dump()
 }

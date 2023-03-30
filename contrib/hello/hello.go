@@ -1,6 +1,9 @@
 package hello
 
-import "github.com/hailaz/gotest/v2"
+import (
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/hailaz/gotest/v2"
+)
 
 // Add description
 //
@@ -27,4 +30,13 @@ func MyName() string {
 // author: hailaz
 func Version() string {
 	return gotest.Version()
+}
+
+// Dump description
+//
+// createTime: 2023-03-30 10:24:46
+//
+// author: hailaz
+func Dump() {
+	g.Dump()
 }
