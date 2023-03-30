@@ -6,11 +6,17 @@ on:
     types:
       - completed
 jobs:
-  on-success:
+  build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: echo 'The triggering workflow passed'
+      - name: show tag
+        run: echo ${{ github.ref }}
   on-failure:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - run: echo 'The triggering workflow failed'
+      - name: show tag
+        run: echo ${{ github.ref }}
