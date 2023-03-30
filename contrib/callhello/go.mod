@@ -8,6 +8,6 @@ replace (
 )
 
 require (
-	github.com/hailaz/gotest/contrib/hello/v2 v2.0.17
-	github.com/hailaz/gotest/v2 v2.0.18
+	github.com/hailaz/gotest/contrib/hello/v2 v2.0.19
+	github.com/hailaz/gotest/v2 v2.0.19
 )
