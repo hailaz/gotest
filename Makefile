@@ -30,7 +30,7 @@ gftidy:
 			echo ""; \
 			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
-			go get -u -v github.com/hailaz/gotest/contrib/...; \
+			go get -u -v github.com/hailaz/gotest/contrib/hello/v2; \
 			$$goGetCMD; \
 			go mod tidy; \
 			cd -; \
