@@ -19,9 +19,11 @@ gftidy:
 	$(eval files=$(shell find . -name go.mod))
 	@set -e; \
 	if [[ $$GITHUB_REF_NAME =~ "v" ]]; then \
-		goGetCMD="go get -v github.com/hailaz/gotest/v2@$$GITHUB_REF_NAME"; \
+		latestVersion=$$GITHUB_REF_NAME; \
+		updateMainModule="go get -v github.com/hailaz/gotest/v2@$$GITHUB_REF_NAME"; \
 	else \
-		goGetCMD="go get -u -v github.com/hailaz/gotest/v2"; \
+		latestVersion=latest; \
+		updateMainModule="go get -u -v github.com/hailaz/gotest/v2"; \
 	fi; \
 	echo "$$goGetCMD"; \
 	for file in ${files}; do \
@@ -31,8 +33,8 @@ gftidy:
 			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
 			go mod tidy; \
-			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@latest{{end}}" -m all | grep contrib | xargs -L1 go get -v ; \
-			$$goGetCMD; \
+			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@$$latestVersion{{end}}" -m all | grep contrib | xargs -L1 go get -v ; \
+			$$updateMainModule; \
 			go mod tidy; \
 			cd -; \
 		fi; \
