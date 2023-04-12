@@ -23,8 +23,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: 'update gf to ${{ github.ref_name }}'
-          title: Cloud - Update available list
-          body: Cloud - Update available list
+          title: Auto Tags
           base: master
           branch: myautotag
           delete-branch: true
