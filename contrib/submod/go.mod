@@ -4,4 +4,4 @@ go 1.18
 
 replace github.com/hailaz/gotest/v2 => ../../
 
-require github.com/hailaz/gotest/v2 v2.0.28
+require github.com/hailaz/gotest/v2 v2.0.40-rc
