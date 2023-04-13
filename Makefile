@@ -45,16 +45,16 @@ version:
 	$(eval files=$(shell find . -name go.mod))
 	@set -e; \
 	newVersion=$(to); \
-	echo "New version is $$newVersion"; \
-	echo "package gotest" > version.go; \
-	echo "" >> version.go; \
-	echo "const (" >> version.go; \
-	echo -e "\t// VERSION is the current GoFrame version." >> version.go; \
-	echo -e "\tVERSION = \"$$newVersion\"" >> version.go; \
-	echo ")" >> version.go; \
+	echo "The version will be set to $$newVersion"; \
 	if [[ $$newVersion =~ "v" ]]; then \
 		latestVersion=$$newVersion; \
-		updateMainModule="go get -v github.com/hailaz/gotest/v2@$$newVersion"; \
+		echo "package gotest" > version.go; \
+		echo "" >> version.go; \
+		echo "const (" >> version.go; \
+		echo -e "\t// VERSION is the current GoFrame version." >> version.go; \
+		echo -e "\tVERSION = \"$$latestVersion\"" >> version.go; \
+		echo ")" >> version.go; \
+		updateMainModule="go get -v github.com/hailaz/gotest/v2@$$latestVersion"; \
 	else \
 		latestVersion=latest; \
 		updateMainModule="go get -u -v github.com/hailaz/gotest/v2"; \
