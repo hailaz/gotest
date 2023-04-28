@@ -73,3 +73,24 @@ version:
 			cd -; \
 		fi; \
 	done
+# make cliversion to=v2.0.41
+cliversion:
+	$(eval files=$(shell find . -name go.mod))
+	@set -e; \
+	newVersion=$(to); \
+	echo "The version will be set to $$newVersion"; \
+	echo "$$goGetCMD"; \
+	for file in ${files}; do \
+		goModPath=$$(dirname $$file); \
+		if [[ $$goModPath =~ "./cmd" ]]; then \
+			echo ""; \
+			echo "processing dir: $$goModPath"; \
+			cd $$goModPath; \
+			go mod tidy; \
+			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@$$newVersion{{end}}" -m all | grep contrib | xargs -L1 go get -v ; \
+			echo $$updateMainModule; \
+			$$updateMainModule; \
+			go mod tidy; \
+			cd -; \
+		fi; \
+	done
