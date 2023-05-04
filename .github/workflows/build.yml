@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - master
-    types:
-      - closed
+    # types:
+    #   - closed
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +13,13 @@ jobs:
     steps:
       - run: echo 'The triggering workflow passed'
       - name: show tag
-        run: echo ${github.head_ref#*/}
+        run: |
+          echo ${{github.head_ref}}
+          newTag=${{github.head_ref}}
+          echo $newTag
+          echo ${newTag#*/}
+      - name: show tag
+        run: echo ${{github.head_ref#*/}}
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
