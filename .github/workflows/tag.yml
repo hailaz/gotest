@@ -40,12 +40,12 @@ jobs:
           git config --global user.email "tagrobot@goframe.org"
           git config --global user.name  "TagRobot"
           for file in `find contrib -name go.mod`; do
-              tag=$(dirname $file)/$GITHUB_REF_NAME
+              tag=$(dirname $file)/${{ github.ref_name }}
               git tag $tag
               git push origin $tag
           done
       - name: update dependencies
-        run: make cliversion to=v2.0.4
+        run: make cliversion to=${{ github.ref_name }}
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
@@ -59,7 +59,7 @@ jobs:
           git config --global user.email "tagrobot@goframe.org"
           git config --global user.name  "TagRobot"
           for file in `find cmd -name go.mod`; do
-              tag=$(dirname $file)/$GITHUB_REF_NAME
+              tag=$(dirname $file)/${{ github.ref_name }}
               git tag $tag
               git push origin $tag
           done
