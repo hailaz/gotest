@@ -3,13 +3,13 @@ name: build
 on:
   pull_request:
     branches:
-      - cli/**
+      - master
     types:
       - closed
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
+    if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
     steps:
       - run: echo 'The triggering workflow passed'
       - name: show tag
