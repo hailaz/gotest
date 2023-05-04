@@ -48,7 +48,7 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 10
-          max_attempts: 3
+          max_attempts: 15
           command: make cliversion to=${{ github.ref_name }}
       - name: Commit & Push changes
         uses: actions-js/push@master
