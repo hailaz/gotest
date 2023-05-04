@@ -18,8 +18,6 @@ jobs:
           newTag=${{github.head_ref}}
           echo $newTag
           echo ${newTag#*/}
-      - name: show tag
-        run: echo ${{github.head_ref#*/}}
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
