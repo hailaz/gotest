@@ -44,6 +44,10 @@ jobs:
               git tag $tag
               git push origin $tag
           done
+      - name: go env
+        run: |
+          go env
+          go env -w GOPROXY=https://goproxy.cn,direct
       - name: update dependencies
         uses: nick-fields/retry@v2
         with:
