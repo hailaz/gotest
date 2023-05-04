@@ -44,6 +44,16 @@ jobs:
               git tag $tag
               git push origin $tag
           done
+      - name: update dependencies
+        run: make cliversion to=v2.0.4
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: autotag
+          author_name: TagRobot
+          author_email: tagrobot@goframe.org
+          message: 'update gfcli to ${{ github.ref_name }}'
       - name: Auto Creating Tags
         run: |
           git config --global user.email "tagrobot@goframe.org"
