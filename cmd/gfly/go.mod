@@ -32,7 +32,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
-replace (
-	github.com/hailaz/gotest/contrib/callhello/v2 => ../../contrib/callhello/
-	github.com/hailaz/gotest/v2 => ../../
-)
+// replace (
+// 	github.com/hailaz/gotest/contrib/callhello/v2 => ../../contrib/callhello/
+// 	github.com/hailaz/gotest/v2 => ../../
+// )

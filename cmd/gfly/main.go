@@ -19,4 +19,5 @@ func main() {
 	fmt.Printf("Version: %s\n", callhello.MyName())
 	fmt.Printf("Version: gf %s\n", gf.VERSION)
 }
-// go install github.com/hailaz/gotest/cmd/gfly@v2.0.43
+
+// go install github.com/hailaz/gotest/cmd/gfly/v2@v2.0.43
