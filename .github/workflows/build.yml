@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - cli/**
-    types:
-      - assigned
+    # types:
+    #   - assigned
 jobs:
   build:
     runs-on: ubuntu-latest
