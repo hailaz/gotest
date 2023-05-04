@@ -44,3 +44,12 @@ jobs:
               git tag $tag
               git push origin $tag
           done
+      - name: Auto Creating Tags
+        run: |
+          git config --global user.email "tagrobot@goframe.org"
+          git config --global user.name  "TagRobot"
+          for file in `find cmd -name go.mod`; do
+              tag=$(dirname $file)/$GITHUB_REF_NAME
+              git tag $tag
+              git push origin $tag
+          done
