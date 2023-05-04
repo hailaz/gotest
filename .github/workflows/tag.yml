@@ -45,17 +45,18 @@ jobs:
               git push origin $tag
           done
 # go env -w GOPROXY=https://goproxy.cn,direct
-      - name: go env
+      - name: update dependencies
         run: |
           go env
           go env -w GOPRIVATE=github.com/hailaz/gotest
           go env
-      - name: update dependencies
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 10
-          max_attempts: 15
-          command: make cliversion to=${{ github.ref_name }}
+          make cliversion to=${{ github.ref_name }}
+      # - name: update dependencies
+      #   uses: nick-fields/retry@v2
+      #   with:
+      #     timeout_minutes: 10
+      #     max_attempts: 15
+      #     command: make cliversion to=${{ github.ref_name }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
