@@ -44,10 +44,11 @@ jobs:
               git tag $tag
               git push origin $tag
           done
+# go env -w GOPROXY=https://goproxy.cn,direct
       - name: go env
         run: |
           go env
-          go env -w GOPROXY=https://goproxy.cn,direct
+          
           go env -w GOPRIVATE=github.com/hailaz/gotest
           go env
       - name: update dependencies
@@ -60,7 +61,7 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: autotag
+          branch: master
           author_name: TagRobot
           author_email: tagrobot@goframe.org
           message: 'update gfcli to ${{ github.ref_name }}'
