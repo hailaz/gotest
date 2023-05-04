@@ -44,9 +44,10 @@ gftidy:
 version:
 	$(eval files=$(shell find . -name go.mod))
 	@set -e; \
+	rm -f go.work; \
 	newVersion=$(to); \
 	echo "The version will be set to $$newVersion"; \
-	if [[ $$newVersion =~ "v" ]]; then \
+	if [[ $$newVersion =~ ^v ]]; then \
 		latestVersion=$$newVersion; \
 		echo "package gotest" > version.go; \
 		echo "" >> version.go; \
@@ -54,10 +55,9 @@ version:
 		echo -e "\t// VERSION is the current GoFrame version." >> version.go; \
 		echo -e "\tVERSION = \"$$latestVersion\"" >> version.go; \
 		echo ")" >> version.go; \
-		updateMainModule="go get -v github.com/hailaz/gotest/v2@$$latestVersion"; \
 	else \
-		latestVersion=latest; \
-		updateMainModule="go get -u -v github.com/hailaz/gotest/v2"; \
+		echo "version $$newVersion not start with v"; \
+		exit 1; \
 	fi; \
 	echo "$$goGetCMD"; \
 	for file in ${files}; do \
@@ -67,12 +67,12 @@ version:
 			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
 			go mod tidy; \
-			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@$$latestVersion{{end}}" -m all | grep contrib | xargs -L1 go get -v ; \
-			$$updateMainModule; \
+			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@$$latestVersion{{end}}" -m all | grep "^github.com/hailaz/gotest" | xargs -L1 go get -v ; \
 			go mod tidy; \
 			cd -; \
 		fi; \
-	done
+	done; \
+	./use.sh
 # make cliversion to=v2.0.41
 cliversion:
 	$(eval files=$(shell find . -name go.mod))
@@ -87,9 +87,8 @@ cliversion:
 			echo "processing dir: $$goModPath"; \
 			cd $$goModPath; \
 			go mod tidy; \
+			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@$$newVersion{{end}}" -m all | grep hailaz/gotest; \
 			go list -f "{{if and (not .Indirect) (not .Main)}}{{.Path}}@$$newVersion{{end}}" -m all | grep contrib | xargs -L1 go get -v ; \
-			echo $$updateMainModule; \
-			$$updateMainModule; \
 			go mod tidy; \
 			cd -; \
 		fi; \

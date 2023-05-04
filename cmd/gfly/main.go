@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"github.com/gogf/gf/v2"
+	"github.com/hailaz/gotest/contrib/callhello/v2"
 	"github.com/hailaz/gotest/v2"
 )
 
@@ -14,4 +16,6 @@ import (
 func main() {
 	fmt.Println("Hello, World!")
 	fmt.Printf("Version: %s\n", gotest.Version())
+	fmt.Printf("Version: %s\n", callhello.MyName())
+	fmt.Printf("Version: gf %s\n", gf.VERSION)
 }
