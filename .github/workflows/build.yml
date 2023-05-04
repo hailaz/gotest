@@ -33,4 +33,4 @@ jobs:
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
       - name: newTag
-        run: echo newTagv
+        run: echo $newTagv
