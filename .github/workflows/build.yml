@@ -13,7 +13,7 @@ jobs:
     steps:
       - run: echo 'The triggering workflow passed'
       - name: show tag
-        run: echo ${{ github.ref }}
+        run: echo ${github.head_ref#*/}
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
@@ -27,4 +27,3 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
-        
