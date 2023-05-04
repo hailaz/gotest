@@ -48,6 +48,8 @@ jobs:
         run: |
           go env
           go env -w GOPROXY=https://goproxy.cn,direct
+          go env -w GOPRIVATE=github.com/hailaz/gotest
+          go env
       - name: update dependencies
         uses: nick-fields/retry@v2
         with:
