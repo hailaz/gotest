@@ -11,7 +11,7 @@ import (
 //
 // author: hailaz
 func MyName() string {
-	return "callhello-v2.0.20"
+	return "callhello" + Version()
 }
 
 // Call description

@@ -17,8 +17,8 @@ jobs:
     steps:
       - name: Checkout Github Code
         uses: actions/checkout@v3
-      - name: update dependencies
-        run: make gftidy
+      # - name: update dependencies
+      #   run: make gftidy
       # - name: Create Pull Request
       #   uses: peter-evans/create-pull-request@v4
       #   with:
