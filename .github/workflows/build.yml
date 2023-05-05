@@ -14,7 +14,7 @@ jobs:
       - run: echo 'The triggering workflow passed'
       - name: show tag
         run: |
-          echo ${github.head_ref#*/}
+          echo ${GITHUB_HEAD_REF#*/}
           newTag=${{github.head_ref}}
           echo $newTag
           echo "thisTag=${newTag#*/}" >> "$GITHUB_ENV"
