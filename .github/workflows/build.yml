@@ -17,7 +17,7 @@ jobs:
           echo ${GITHUB_HEAD_REF#*/}
           newTag=${{github.head_ref}}
           echo $newTag
-          echo "thisTag=${newTag#*/}" >> "$GITHUB_ENV"
+          echo "thisTag=${GITHUB_HEAD_REF#*/}" >> "$GITHUB_ENV"
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
@@ -31,5 +31,5 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
-      - name: newTag
+      - name: thisTag
         run: echo "${{ env.thisTag }}"
