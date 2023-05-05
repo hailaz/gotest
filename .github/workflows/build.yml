@@ -4,12 +4,12 @@ on:
   pull_request:
     branches:
       - master
-    # types:
-    #   - closed
+    types:
+      - closed
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
+    if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
     steps:
       - name: Checkout Github Code
         uses: actions/checkout@v3
