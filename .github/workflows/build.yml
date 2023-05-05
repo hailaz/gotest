@@ -40,6 +40,8 @@ jobs:
       - name: build
         run: |
           cd cmd/gfly
+          go env
+          go env -w CGO_ENABLED=0
           go build -o temp/gfly
           go build -o temp/gfly123
           ls -l temp
