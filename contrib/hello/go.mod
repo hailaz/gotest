@@ -6,5 +6,5 @@ replace github.com/hailaz/gotest/v2 => ../../
 
 require (
 	github.com/gogf/gf/v2 v2.3.3
-	github.com/hailaz/gotest/v2 v2.0.58-rc9
+	github.com/hailaz/gotest/v2 v2.0.58-rc10
 )
