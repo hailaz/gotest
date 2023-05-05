@@ -4,12 +4,12 @@ on:
   pull_request:
     branches:
       - master
-    types:
-      - closed
+    # types:
+    #   - closed
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
+    # if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
     steps:
       - name: Dump GitHub context
         id: github_context_step
@@ -50,6 +50,7 @@ jobs:
           tag: ${{ env.RELEASE_TAG }}
           name: GoFrame Release ${{ env.RELEASE_TAG }}
           files: cmd/gfly/temp/
+          gzip: false
       
       # - name: Create Github Release
       #   id: create_release
