@@ -4,12 +4,12 @@ on:
   pull_request:
     branches:
       - master
-    # types:
-    #   - closed
+    types:
+      - closed
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
+    if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
     steps:
       - name: Dump GitHub context
         id: github_context_step
@@ -44,13 +44,13 @@ jobs:
           go build -o temp/gfly123
           ls -l temp
       - name: Create Github Release
-        uses: meeDamian/github-release@2.0
+        uses: termux/upload-release-action@v4.0.2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.RELEASE_TAG }}
-          name: GoFrame Release ${{ env.RELEASE_TAG }}
-          files: cmd/gfly/temp/
-          gzip: false
+          release_name: GoFrame Release ${{ env.RELEASE_TAG }}
+          file: cmd/gfly/temp/gfl*
+          file_glob: true
       
       # - name: Create Github Release
       #   id: create_release
