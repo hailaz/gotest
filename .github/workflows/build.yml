@@ -44,13 +44,12 @@ jobs:
           go build -o temp/gfly123
           ls -l temp
       - name: Create Github Release
-        uses: meeDamian/github-release@2.0
+        uses: termux/upload-release-action@v4.0.2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.RELEASE_TAG }}
           name: GoFrame Release ${{ env.RELEASE_TAG }}
-          files: cmd/gfly/temp/
-          gzip: false
+          file: cmd/gfly/temp/gfl*
       
       # - name: Create Github Release
       #   id: create_release
