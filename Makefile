@@ -26,5 +26,6 @@ version:
 .PHONY: cliversion
 cliversion:
 	newVersion=$(to); \
+	ls -l .github/workflows; \
 	.github/workflows/version.sh ./cmd/gfly $$newVersion; 
 
