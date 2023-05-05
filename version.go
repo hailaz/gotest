@@ -2,5 +2,5 @@ package gotest
 
 const (
 	// VERSION is the current GoFrame version.
-	VERSION = "v2.0.58-rc7"
+	VERSION = "v2.0.58-rc8"
 )

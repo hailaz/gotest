@@ -11,45 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.head_ref, 'cli/') && github.event.pull_request.merged == true }}
     steps:
-      - name: Checkout Github Code
-        uses: actions/checkout@v3
-      
-      - name: Set Up Golang Environment
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.20.3
-      - run: echo 'The triggering workflow passed'
-      - name: show tag
-        run: |
-          echo ${GITHUB_HEAD_REF#*/}
-          newTag=${{github.head_ref}}
-          echo $newTag
-          echo "thisTag=${GITHUB_HEAD_REF#*/}" >> "$GITHUB_ENV"
-      - name: thisTag
-        run: echo "${{ env.thisTag }}"
-      - name: build
-        run: |
-          cd cmd/gfly
-          go build -o temp/gfly
-          ls -l temp
-      - name: Create Github Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name:     ${{ env.thisTag }}
-          name: GoFrame Release ${{ env.thisTag }}
-          draft:        false
-          prerelease:   false
-      
-      - name: Upload Release Asset
-        id:   upload-release-asset
-        uses: alexellis/upload-assets@0.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          asset_paths: '["cmd/gfly/temp/*"]'
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
@@ -63,4 +24,50 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
+      - name: Checkout Github Code
+        uses: actions/checkout@v3
+      
+      - name: Set Up Golang Environment
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.20.3
+      - run: echo 'The triggering workflow passed'
+      - name: show tag
+        run: |
+          echo ${GITHUB_HEAD_REF#*/}
+          echo "RELEASE_TAG=${GITHUB_HEAD_REF#*/}" >> "$GITHUB_ENV"
+          echo "${{ env.RELEASE_TAG }}"
+      - name: build
+        run: |
+          cd cmd/gfly
+          go build -o temp/gfly
+          go build -o temp/gfly123
+          ls -l temp
+      - name: Create Github Release
+        uses: meeDamian/github-release@2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.RELEASE_TAG }}
+          name: GoFrame Release ${{ env.RELEASE_TAG }}
+          files: cmd/gfly/temp/
+      
+      # - name: Create Github Release
+      #   id: create_release
+      #   uses: softprops/action-gh-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name:     ${{ env.RELEASE_TAG }}
+      #     name: GoFrame Release ${{ env.RELEASE_TAG }}
+      #     draft:        false
+      #     prerelease:   false
+      
+      # - name: Upload Release Asset
+      #   id:   upload-release-asset
+      #   uses: alexellis/upload-assets@0.4.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     asset_paths: '["cmd/gfly/temp/*"]'
+
       
