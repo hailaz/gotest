@@ -18,6 +18,31 @@ jobs:
           newTag=${{github.head_ref}}
           echo $newTag
           echo "thisTag=${GITHUB_HEAD_REF#*/}" >> "$GITHUB_ENV"
+      - name: thisTag
+        run: echo "${{ env.thisTag }}"
+      - name: build
+        run: |
+          cd cmd/gfly
+          go build -o temp/gfly
+          ls -l temp
+      - name: Create Github Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name:     ${{ env.thisTag }}
+          name: GoFrame Release ${{ env.thisTag }}
+          draft:        false
+          prerelease:   false
+      
+      - name: Upload Release Asset
+        id:   upload-release-asset
+        uses: alexellis/upload-assets@0.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          asset_paths: '["cmd/gfly/temp/*"]'
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
@@ -31,5 +56,4 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
-      - name: thisTag
-        run: echo "${{ env.thisTag }}"
+      
