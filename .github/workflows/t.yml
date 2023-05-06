@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - coverage
+
 jobs:
   build:
     name: Auto Creating Tags
