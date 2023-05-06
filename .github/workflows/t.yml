@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - coverage
 jobs:
   build:
     name: Auto Creating Tags
@@ -18,7 +19,10 @@ jobs:
       - name: run
         run: pwd
       - name: show
-        if: ${{github.ref == 'master'}}
+        if: ${{github.ref == 'refs/heads/master'}}
+        run: echo ${{ github.ref }}
+      - name: show
+        if: ${{github.ref == 'refs/heads/coverage'}}
         run: echo ${{ github.ref }}
       - name: Dump GitHub context
         id: github_context_step
