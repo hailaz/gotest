@@ -5,6 +5,9 @@ on:
     branches:
       - master
       - coverage
+  pull_request:
+    branches:
+      - master
 jobs:
   build:
     name: Auto Creating Tags
@@ -19,7 +22,7 @@ jobs:
       - name: run
         run: pwd
       - name: show
-        if: ${{github.ref == 'refs/heads/master'}}
+        if: ${{ github.ref != 'refs/heads/coverage' }}
         run: echo ${{ github.ref }}
       - name: show
         if: ${{github.ref == 'refs/heads/coverage'}}

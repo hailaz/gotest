@@ -7,6 +7,14 @@ echo "所有参数：$*"
 echo "所有参数：$@"
 echo "参数个数：$#"
 
+coverage=$1
+echo "coverage: ${coverage}"
+
+if [ "${coverage}" = "coverage" ]; then
+  echo "The first argument is 'coverage'"
+else
+  echo "The first argument is not 'coverage'"
+fi
 
 # 判断参数个数是否为2
 if [ $# -ne 2 ]; then
@@ -26,6 +34,7 @@ if [[ "$2" != v* ]]; then
     echo "错误：版本号不是以v开头"
     exit 1
 fi
+
 workdir=$1
 newVersion=$2
 echo "准备将${workdir}目录下的所有go.mod文件中的版本号替换为${newVersion}"
