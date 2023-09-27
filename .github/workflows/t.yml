@@ -20,7 +20,7 @@ jobs:
       - name: run
         run: pwd
       - name: show
-        if: ${{github.ref != 'refs/heads/coverage'}}
+        if: ${{ github.ref != 'refs/heads/coverage' }}
         run: echo ${{ github.ref }}
       - name: show
         if: ${{github.ref == 'refs/heads/coverage'}}
