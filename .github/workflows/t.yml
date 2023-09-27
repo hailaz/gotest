@@ -21,6 +21,12 @@ jobs:
         run: ls -l
       - name: run
         run: pwd
+      - name: Build & Test
+        if: ${{ (github.event_name == 'push' && github.ref != 'refs/heads/master') || github.event_name == 'pull_request' }}
+        run: echo ${{ github.ref }}
+      - name: Build & Test & Coverage
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        run: echo ${{ github.ref }}
       - name: show
         if: ${{ github.ref != 'refs/heads/coverage' }}
         run: echo ${{ github.ref }}
