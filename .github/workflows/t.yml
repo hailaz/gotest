@@ -5,7 +5,9 @@ on:
     branches:
       - master
       - coverage
-
+  pull_request:
+    branches:
+      - master
 jobs:
   build:
     name: Auto Creating Tags
