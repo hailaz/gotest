@@ -42,12 +42,12 @@ jobs:
             ${{ runner.os }}-
       - name: Build & Test
         if: ${{ (github.event_name == 'push' && github.ref != 'refs/heads/master') || github.event_name == 'pull_request' }}
-        run: 
+        run: |
           echo ${{ github.ref }}
           ./test.sh
       - name: Build & Test & Coverage
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        run: 
+        run: |
           echo ${{ github.ref }}
           ./test.sh coverage
       - name: show
