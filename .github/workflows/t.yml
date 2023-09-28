@@ -43,6 +43,8 @@ jobs:
       - name: Build & Test
         if: ${{ (github.event_name == 'push' && github.ref != 'refs/heads/master') || github.event_name == 'pull_request' }}
         run: |
+          go env GOMODCACHE
+          go env GOCACHE
           echo ${{ github.ref }}
           bash ./test.sh
       - name: Build & Test & Coverage
