@@ -12,6 +12,10 @@ jobs:
   build:
     name: Auto Creating Tags
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ "1.18", "1.19", "1.20", "1.21" ]
+        goarch: [ "386", "amd64" ]
     steps:
       - name: Checkout Github Code
         uses: actions/checkout@v3
@@ -21,12 +25,31 @@ jobs:
         run: ls -l
       - name: run
         run: pwd
+      - name: Setup Golang ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: false
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-${{ matrix.go-version }}-
+            ${{ runner.os }}-go-
+            ${{ runner.os }}-
       - name: Build & Test
         if: ${{ (github.event_name == 'push' && github.ref != 'refs/heads/master') || github.event_name == 'pull_request' }}
-        run: echo ${{ github.ref }}
+        run: 
+          echo ${{ github.ref }}
+          ./test.sh
       - name: Build & Test & Coverage
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        run: echo ${{ github.ref }}
+        run: 
+          echo ${{ github.ref }}
+          ./test.sh coverage
       - name: show
         if: ${{ github.ref != 'refs/heads/coverage' }}
         run: echo ${{ github.ref }}
