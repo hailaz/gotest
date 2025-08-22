@@ -1,4 +1,4 @@
-name: Build And Deploy
+name: Update goframe.org-pdf
 
 on:
   push:
@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
-    name: Build And Deploy
+    name: Update
     runs-on: ubuntu-latest
     steps:
       
