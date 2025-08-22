@@ -1,0 +1,23 @@
+name: Build And Deploy
+
+on:
+  push:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  deploy:
+    name: Build And Deploy
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Update goframe.org-pdf
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.HAILAZTOKEN }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'gogf',
+              repo: 'goframe.org-pdf',
+              event_type: '更新'
+            })
