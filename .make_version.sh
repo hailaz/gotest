@@ -70,15 +70,11 @@ for file in `find ${workdir} -name go.mod`; do
     fi
 
     cd $goModPath
-    if [ $goModPath = "./cmd/gf" ]; then
+    if [ $goModPath = "./cmd/gfly" ]; then
         mv go.work go.work.version.bak
         go mod edit -replace github.com/hailaz/gotest/v2=../../
-        go mod edit -replace github.com/hailaz/gotest/contrib/drivers/clickhouse/v2=../../contrib/drivers/clickhouse
-        go mod edit -replace github.com/hailaz/gotest/contrib/drivers/mssql/v2=../../contrib/drivers/mssql
-        go mod edit -replace github.com/hailaz/gotest/contrib/drivers/mysql/v2=../../contrib/drivers/mysql
-        go mod edit -replace github.com/hailaz/gotest/contrib/drivers/oracle/v2=../../contrib/drivers/oracle
-        go mod edit -replace github.com/hailaz/gotest/contrib/drivers/pgsql/v2=../../contrib/drivers/pgsql
-        go mod edit -replace github.com/hailaz/gotest/contrib/drivers/sqlite/v2=../../contrib/drivers/sqlite
+        go mod edit -replace github.com/hailaz/gotest/contrib/hello/v2=../../contrib/hello
+        go mod edit -replace github.com/hailaz/gotest/contrib/callhello/v2=../../contrib/callhello
     fi
     go mod tidy
     # Remove toolchain line if exists
@@ -91,14 +87,10 @@ for file in `find ${workdir} -name go.mod`; do
     go mod tidy
     # Remove toolchain line if exists
     $SED_INPLACE '/^toolchain/d' go.mod
-    if [ $goModPath = "./cmd/gf" ]; then
+    if [ $goModPath = "./cmd/gfly" ]; then
         go mod edit -dropreplace github.com/hailaz/gotest/v2
-        go mod edit -dropreplace github.com/hailaz/gotest/contrib/drivers/clickhouse/v2
-        go mod edit -dropreplace github.com/hailaz/gotest/contrib/drivers/mssql/v2
-        go mod edit -dropreplace github.com/hailaz/gotest/contrib/drivers/mysql/v2
-        go mod edit -dropreplace github.com/hailaz/gotest/contrib/drivers/oracle/v2
-        go mod edit -dropreplace github.com/hailaz/gotest/contrib/drivers/pgsql/v2
-        go mod edit -dropreplace github.com/hailaz/gotest/contrib/drivers/sqlite/v2
+        go mod edit -dropreplace github.com/hailaz/gotest/contrib/hello/v2
+        go mod edit -dropreplace github.com/hailaz/gotest/contrib/callhello/v2
         mv go.work.version.bak go.work
     fi
     cd -

@@ -2,3 +2,4 @@ coverage.out
 go.work
 go.work.sum
 !cmd/gfly/go.work
+cmd/gfly/gfly.exe
