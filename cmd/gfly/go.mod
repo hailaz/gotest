@@ -4,8 +4,8 @@ go 1.23.0
 
 require (
 	github.com/gogf/gf/v2 v2.9.2
-	github.com/hailaz/gotest/contrib/callhello/v2 v2.0.64
-	github.com/hailaz/gotest/v2 v2.0.64
+	github.com/hailaz/gotest/contrib/callhello/v2 v2.0.66
+	github.com/hailaz/gotest/v2 v2.0.66
 )
 
 require (
@@ -19,7 +19,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
-	github.com/hailaz/gotest/contrib/hello/v2 v2.0.64 // indirect
+	github.com/hailaz/gotest/contrib/hello/v2 v2.0.65 // indirect
 	github.com/magiconair/properties v1.8.10 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
