@@ -1,0 +1,14 @@
+go 1.23.0
+
+// =====================================================================================================
+// NOTE:
+// Please update associated commands in ../../.set_version.sh if any of the follows replacements change.
+// =====================================================================================================
+
+replace (
+	github.com/hailaz/gotest/contrib/hello/v2 => ../../contrib/hello
+	github.com/hailaz/gotest/contrib/callhello/v2 => ../../contrib/callhello
+	github.com/hailaz/gotest/v2 => ../../
+)
+
+use ./
