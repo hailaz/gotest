@@ -4,8 +4,8 @@ go 1.23.0
 
 require (
 	github.com/gogf/gf/v2 v2.9.2
-	github.com/hailaz/gotest/contrib/callhello/v2 v2.0.64
-	github.com/hailaz/gotest/v2 v2.0.64
+	github.com/hailaz/gotest/contrib/callhello/v2 v2.0.65
+	github.com/hailaz/gotest/v2 v2.0.65
 )
 
 require (
