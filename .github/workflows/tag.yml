@@ -1,4 +1,4 @@
-name: AutoCreating SubMod Tags
+name: 自动打子包标签
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: build
+name: 合并之后构建发布
 
 on:
   pull_request:
