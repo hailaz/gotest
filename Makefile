@@ -43,3 +43,11 @@ subsync: subup
 		git push origin; \
 	fi; \
 	cd ..;
+
+# make cliversion to=v2.0.41
+.PHONY: cliversion
+cliversion:
+	newVersion=$(to); \
+	ls -l .github/workflows; \
+	.github/workflows/version.sh ./cmd/gfly $$newVersion; 
+

@@ -2,6 +2,6 @@ package gotest
 
 const (
 	// VERSION is the current GoFrame version.
-	VERSION = "v2.0.62"
+	VERSION = "v2.0.63"
 	// make version to=v2.0.60
 )
