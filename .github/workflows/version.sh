@@ -7,14 +7,6 @@ echo "所有参数：$*"
 echo "所有参数：$@"
 echo "参数个数：$#"
 
-coverage=$1
-echo "coverage: ${coverage}"
-
-if [ "${coverage}" = "coverage" ]; then
-  echo "The first argument is 'coverage'"
-else
-  echo "The first argument is not 'coverage'"
-fi
 
 # 判断参数个数是否为2
 if [ $# -ne 2 ]; then

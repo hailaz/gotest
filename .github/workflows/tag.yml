@@ -17,38 +17,30 @@ jobs:
     steps:
       - name: Checkout Github Code
         uses: actions/checkout@v4
-      - name: Auto Creating Tags
-        run: |
-          git config --global user.email "tagrobot@goframe.org"
-          git config --global user.name  "TagRobot"
-          for file in `find contrib -name go.mod`; do
-              tag=$(dirname $file)/${{ github.ref_name }}
-              git tag $tag
-              git push origin $tag
-          done
-# go env -w GOPROXY=https://goproxy.cn,direct
+
+          #         go env
+          # go env -w GOPRIVATE=github.com/hailaz/gotest
+          # go env
+          # make cliversion to=${{ github.ref_name }}
       - name: update dependencies
         run: |
-          go env
-          go env -w GOPRIVATE=github.com/hailaz/gotest
-          go env
-          make cliversion to=${{ github.ref_name }}
+          .github/workflows/version.sh ./cmd/gfly ${{ github.ref_name }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: 'update gf to ${{ github.ref_name }}'
-          title: 主库打tag后工具链自动升级
+          commit-message: 'update gf cli to ${{ github.ref_name }}'
+          title: tag ${{ github.ref_name }} update gf cli
           base: master
-          branch: cli/${{ github.ref_name }}
+          branch: fix/${{ github.ref_name }}
           delete-branch: true
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: cli/${{ github.ref_name }}
+          branch: fix/${{ github.ref_name }}
           author_name: TagRobot
           author_email: tagrobot@goframe.org
-          message: 'update gfcli to ${{ github.ref_name }}'
+          message: 'update gf cli to ${{ github.ref_name }}'
       - name: Auto Creating Tags
         run: |
           git config --global user.email "tagrobot@goframe.org"
