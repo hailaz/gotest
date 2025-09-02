@@ -35,6 +35,12 @@ github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/ad
 github.com/grokify/html-strip-tags-go v0.0.1/go.mod h1:2Su6romC5/1VXOQMaWL2yb618ARB8iVo6/DR99A6d78=
 github.com/grokify/html-strip-tags-go v0.1.0 h1:03UrQLjAny8xci+R+qjCce/MYnpNXCtgzltlQbOBae4=
 github.com/grokify/html-strip-tags-go v0.1.0/go.mod h1:ZdzgfHEzAfz9X6Xe5eBLVblWIxXfYSQ40S/VKrAOGpc=
+github.com/hailaz/gotest/contrib/callhello/v2 v2.0.71 h1:3I2v3bDCJNDzdyVrQDYz6EqpCfUA2O1nAHBvFQpdvCY=
+github.com/hailaz/gotest/contrib/callhello/v2 v2.0.71/go.mod h1:d/X602o2E4Zwyau56MTsGRnOncNjVs+EpucEUdi4XMY=
+github.com/hailaz/gotest/contrib/hello/v2 v2.0.71 h1:7GmArMKfit9hdIJR36spjF+TmcHa2bneJD+z5A2dCxM=
+github.com/hailaz/gotest/contrib/hello/v2 v2.0.71/go.mod h1:Sp8jRmSfPp3tqnpH5747o4arLUaCIG4Ri9rr7lc4prY=
+github.com/hailaz/gotest/v2 v2.0.71 h1:FGJEcs+57NGGtQeKjLPw8065bxZX/tWNfuMQ9HAZLoM=
+github.com/hailaz/gotest/v2 v2.0.71/go.mod h1:B2EdDZyCXGAki0Ljpux15YoV4KSot5bIWfWQURlzQRM=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
