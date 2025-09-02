@@ -24,6 +24,7 @@ jobs:
           # make cliversion to=${{ github.ref_name }}
       - name: update dependencies
         run: |
+          go env -w GOPRIVATE=github.com/hailaz/gotest
           .github/workflows/version.sh ./cmd/gfly ${{ github.ref_name }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
